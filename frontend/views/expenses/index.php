@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Expenses', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Add Expenses', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -29,10 +29,18 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             // '_id',
-            'expense_type',
+            // 'expense_type',
+            [
+                'attribute' => 'expense_type',
+                'format' => 'raw',
+                'contentOptions' => ['class' => 'text-center'],
+                'value' => function ($model) {
+                    return implode(",", (array)$model->expense_type);
+                },
+            ],
             'amount',
-            'create_date',
-            'update_date',
+            // 'create_date',
+            // 'update_date',
             //'create_by',
             //'update_by',
             [
